@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>E-HAWK Manual Vetting</title>
+
+    <script>
+        $(function() {
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'post',
+                    url: 'process.php',
+                    data: $('form').serialize(),
+                    success: function(result) {
+                        $('#vetdata').html(result);
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row m-5">
+            <div class="col-md-5">
+                <h1>E-HAWK Manual Vetting</h1>
+                <p>Enter data and click Submit. Requires a minimum of ip, email, or domain values</p>
+                <form action="/" id="searchForm">
+                    <div class="form-group">
+                        <label for="ip">IP</label>
+                        <input type="text" class="form-control" id="ip" name="ip" placeholder="Enter IP">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label for="domain">Domain</label>
+                        <input type="text" class="form-control" id="domain" name="domain" placeholder="Enter Domain">
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="button" class="btn btn-primary mb-3">Submit</button>
+                </form>
+            </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">API Results</h5>
+                        <div id="vetdata" name="vetdata"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
