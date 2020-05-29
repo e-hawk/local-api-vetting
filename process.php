@@ -26,7 +26,7 @@ if($_POST['ip'] == '' && $_POST['email'] == '' && $_POST['domain'] == ''){
 
    
 // Call the API
-$curl = curl_init("https://api.e-hawk.net/");
+$curl = curl_init("https://api.ehawk.net/");
 if (!empty($curl)) {
     curl_setopt ($curl, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt ($curl, CURLOPT_POST, true);
