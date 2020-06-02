@@ -24,7 +24,12 @@ if($_POST['ip'] == '' && $_POST['email'] == '' && $_POST['domain'] == ''){
    if($_POST['lastname']  != "") { $post_array['lastname']= $_POST['lastname']; }
    if($_POST['domain']  != "") { $post_array['domain']= $_POST['domain']; }
 
-   
+// auto extract domain from emaildomain if email is sent but not domain
+// comment out if not wanted
+   if($_POST['domain'] == "" && $_POST['email'] != "") {
+     $post_array['domain'] =  substr($post_array['email'],strpos($post_array['email'],'@',0)+1,150);
+   }
+     
 // Call the API
 $curl = curl_init("https://api.ehawk.net/");
 if (!empty($curl)) {
